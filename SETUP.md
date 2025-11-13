@@ -5,6 +5,10 @@
 **Purpose:** 24/7 Security Camera Monitoring (Unifi Protect)
 **Setup Date:** November 12, 2025
 
+> **Note:** This document uses placeholders for sensitive information:
+> - `<PI_IP_ADDRESS>`, `<UNIFI_PROTECT_IP>`: Check your Ubiquiti UniFi console or router's DHCP table
+> - `<SSH_USERNAME>`, `<SSH_PASSWORD>`: Stored in Bitwarden under "Church Security Kiosk"
+
 ---
 
 ## Table of Contents
@@ -36,17 +40,17 @@
 - **Browser:** Chromium 141.0.7390.65
 
 ### Network Configuration
-- **Pi IP Address:** 192.168.1.253
-- **Unifi Protect IP:** 192.168.3.1
-- **Monitored URL:** https://192.168.3.1/protect/dashboard/all
+- **Pi IP Address:** `<PI_IP_ADDRESS>` (check your router's DHCP table or Ubiquiti UniFi console)
+- **Unifi Protect IP:** `<UNIFI_PROTECT_IP>` (check Ubiquiti UniFi console)
+- **Monitored URL:** `https://<UNIFI_PROTECT_IP>/protect/dashboard/all`
 
 ### SSH Access
 ```
-Host: 192.168.1.253
-Username: security
-Password: Untried-Skyward-Presuming7
+Host: <PI_IP_ADDRESS>
+Username: <SSH_USERNAME>
+Password: <SSH_PASSWORD>
 ```
-**⚠️ SECURITY WARNING:** Change default password in production!
+**⚠️ Credentials stored in Bitwarden under "Church Security Kiosk"**
 
 ---
 
@@ -253,7 +257,7 @@ WAYLAND_DISPLAY=wayland-0 wlopm
 --js-flags=--max-old-space-size=2048 # 2GB JavaScript heap limit
 ```
 
-**URL:** `https://192.168.3.1/protect/dashboard/all`
+**URL:** `https://<UNIFI_PROTECT_IP>/protect/dashboard/all`
 
 ### Power-Saving Configuration
 
@@ -280,7 +284,7 @@ WAYLAND_DISPLAY=wayland-0 wlopm
 **Script:** `~/network-monitor.sh`
 
 **Configuration:**
-- **Target Host:** 192.168.3.1 (Unifi Protect)
+- **Target Host:** `<UNIFI_PROTECT_IP>` (Unifi Protect server)
 - **Check Interval:** 30 seconds
 - **Method:** Single ping with 2-second timeout
 
@@ -328,8 +332,9 @@ WAYLAND_DISPLAY=wayland-0 wlopm
 
 **Connect:**
 ```bash
-ssh security@192.168.1.253
+ssh <SSH_USERNAME>@<PI_IP_ADDRESS>
 ```
+(Credentials available in Bitwarden under "Church Security Kiosk")
 
 **Put to Sleep:**
 ```bash
@@ -453,7 +458,7 @@ journalctl | grep "Network monitor" | tail -20
 
 **Test connectivity manually:**
 ```bash
-ping -c 1 192.168.3.1
+ping -c 1 <UNIFI_PROTECT_IP>
 # Should respond if Unifi is reachable
 ```
 
@@ -624,7 +629,7 @@ Plenty of headroom - memory is not a constraint.
 ```bash
 # On your laptop
 ssh-keygen -t ed25519
-ssh-copy-id security@192.168.1.253
+ssh-copy-id <SSH_USERNAME>@<PI_IP_ADDRESS>
 
 # On Pi
 sudo nano /etc/ssh/sshd_config
@@ -748,11 +753,8 @@ Potential enhancements to consider:
 3. Verify all services running: `ps aux | grep -E 'chromium|swayidle|network'`
 
 **SSH Access:**
-- Host: 192.168.1.253
-- User: security
-- Password: Untried-Skyward-Presuming7
-
-**Change default credentials before production use!**
+- Credentials stored in Bitwarden under "Church Security Kiosk"
+- IP address available in Ubiquiti UniFi console or router DHCP table
 
 ---
 
