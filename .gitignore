@@ -16,6 +16,7 @@ Thumbs.db
 # Personal/sensitive info
 *password*
 *credential*
+kiosk-config.sh
 
 # IDE
 .vscode/

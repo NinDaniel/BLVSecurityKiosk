@@ -164,22 +164,63 @@ Password: <SSH_PASSWORD>
 - Unifi Protect system accessible on local network
 - SSH access to the Pi
 
-### Installation Steps
+### Automated Setup (Recommended)
+
+The easiest way to set up a new kiosk is using the interactive setup script:
+
+```bash
+# Clone the repository
+git clone https://github.com/NinDaniel/BLVSecurityKiosk.git
+cd BLVSecurityKiosk
+
+# Run the setup script
+chmod +x setup.sh
+./setup.sh
+```
+
+The setup script will:
+1. Prompt for your Unifi Protect IP address
+2. Test connectivity to the server
+3. Generate a local configuration file (`~/kiosk-config.sh`)
+4. Copy scripts to your home directory
+5. Install autostart configurations
+6. Install desktop shortcuts
+7. Set up the daily reboot cron job
+8. Check for and optionally install missing dependencies
+9. Offer to reboot the system
+
+**Important:** The configuration file (`~/kiosk-config.sh`) is created locally and is NOT tracked in git. This allows you to:
+- Keep sensitive information (IP addresses) out of the repository
+- Set up multiple kiosks with different configurations from the same repository
+
+### Manual Installation Steps
+
+If you prefer to set up manually or need to customize the installation:
 
 1. **Clone Repository**
 ```bash
 cd ~
-git clone <repository-url> church-kiosk-config
-cd church-kiosk-config
+git clone https://github.com/NinDaniel/BLVSecurityKiosk.git
+cd BLVSecurityKiosk
 ```
 
-2. **Copy Scripts to Home Directory**
+2. **Create Configuration File**
+```bash
+# Copy the example config
+cp kiosk-config.sh.example ~/kiosk-config.sh
+
+# Edit with your actual values
+nano ~/kiosk-config.sh
+# Replace <UNIFI_PROTECT_IP> with your actual IP address
+```
+
+3. **Copy Scripts to Home Directory**
 ```bash
 cp scripts/* ~/
 chmod +x ~/*.sh
 ```
 
-3. **Install Autostart Configurations**
+4. **Install Autostart Configurations**
 ```bash
 mkdir -p ~/.config/autostart
 cp autostart-configs/unifi-protect.desktop ~/.config/autostart/
@@ -188,25 +229,25 @@ cp autostart-configs/network-monitor.desktop ~/.config/autostart/
 # Note: chromium-refresh.desktop.disabled is intentionally not copied (disabled by default)
 ```
 
-4. **Copy Desktop Shortcuts**
+5. **Copy Desktop Shortcuts**
 ```bash
 cp desktop-shortcuts/* ~/Desktop/
 chmod +x ~/Desktop/*.sh
 ```
 
-5. **Set Up Daily Reboot**
+6. **Set Up Daily Reboot**
 ```bash
 echo "0 3 * * * root /usr/sbin/reboot" | sudo tee /etc/cron.d/daily-reboot
 sudo chmod 644 /etc/cron.d/daily-reboot
 ```
 
-6. **Install Required Tools** (if not already installed)
+7. **Install Required Tools** (if not already installed)
 ```bash
 sudo apt-get update
 sudo apt-get install -y xdotool chromium swayidle wlopm
 ```
 
-7. **Reboot System**
+8. **Reboot System**
 ```bash
 sudo reboot
 ```

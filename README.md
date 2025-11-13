@@ -59,13 +59,28 @@ church-kiosk-config/
 ## Quick Start
 
 ### Installation
-1. Clone this repository to your Raspberry Pi
-2. Copy scripts to home directory: `cp scripts/* ~/`
-3. Make scripts executable: `chmod +x ~/*.sh`
-4. Copy autostart configs: `cp autostart-configs/* ~/.config/autostart/`
-5. Copy desktop shortcuts: `cp desktop-shortcuts/* ~/Desktop/`
-6. Set up cron job: `echo "0 3 * * * root /usr/sbin/reboot" | sudo tee /etc/cron.d/daily-reboot`
-7. Reboot system
+
+**Quick Setup (Recommended):**
+```bash
+# Clone the repository
+git clone https://github.com/NinDaniel/BLVSecurityKiosk.git
+cd BLVSecurityKiosk
+
+# Run the interactive setup script
+chmod +x setup.sh
+./setup.sh
+```
+
+The setup script will:
+- Prompt for your Unifi Protect IP address
+- Test connectivity
+- Create a local configuration file
+- Install scripts, autostart configs, and desktop shortcuts
+- Set up the daily reboot cron job
+- Check and install dependencies
+
+**Manual Setup:**
+If you prefer manual installation, see SETUP.md for detailed instructions.
 
 ### Basic Usage
 
