@@ -20,23 +20,19 @@ This repository contains all configuration files, scripts, and documentation for
 - **Manual Controls**: Desktop shortcuts for immediate sleep/wake control
 - **Optional Safety Net**: 10-minute auto-refresh script (disabled by default)
 
-## Problems Solved
+## How It Works
 
-### 1. Chromium Crashes
-**Before:** Browser would crash after ~30 minutes showing "Please reload the page"
-**After:** Optimized memory management, larger caches, disabled unnecessary features
+### 1. Browser Stability
+Chromium runs with optimized memory management, larger caches, and unnecessary features disabled to maintain stable 24/7 operation without crashes or memory leaks.
 
-### 2. Power Consumption
-**Before:** Pi constantly unplugged/replugged (SD card risk)
-**After:** Intelligent power saving - display off + streaming stops when idle
+### 2. Intelligent Power Saving
+The system automatically turns off the display and stops video streaming after 15 minutes of inactivity, reducing power consumption by ~75% while maintaining instant wake capability.
 
-### 3. Network Interruptions
-**Before:** Manual intervention needed after network drops
-**After:** Automatic detection and Chromium restart
+### 3. Network Recovery
+A monitoring script continuously checks network connectivity to the Unifi Protect server. When the connection is restored after an interruption, Chromium automatically restarts to resume video streaming.
 
-### 4. Manual Maintenance
-**Before:** Required physical presence to restart after issues
-**After:** Self-healing with auto-reboot and recovery features
+### 4. Self-Healing Maintenance
+The kiosk performs automatic daily reboots at 3:00 AM to clear any accumulated state issues, ensuring reliable long-term operation without manual intervention.
 
 ## Repository Structure
 
