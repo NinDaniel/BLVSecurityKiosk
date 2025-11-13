@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Network Recovery Monitor
+Exec=/home/security/network-monitor.sh
+X-GNOME-Autostart-enabled=true
+Hidden=false
+NoDisplay=false
+Comment=Monitors network and restarts Chromium when connection recovers

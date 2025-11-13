@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Chromium Auto-Refresh
+Exec=/home/security/chromium-refresh.sh
+X-GNOME-Autostart-enabled=true
+Hidden=false
+NoDisplay=false
+Comment=Auto-refreshes Chromium every 10 minutes

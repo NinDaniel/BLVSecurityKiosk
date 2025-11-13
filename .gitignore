@@ -1,0 +1,23 @@
+# Logs
+*.log
+*.log.*
+/tmp/
+
+# Backups
+*.backup
+*.backup[0-9]
+
+# System files
+.DS_Store
+Thumbs.db
+*~
+*.swp
+
+# Personal/sensitive info
+*password*
+*credential*
+
+# IDE
+.vscode/
+.idea/
+
