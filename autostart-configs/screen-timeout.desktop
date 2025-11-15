@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=Screen Timeout with Power Saving
-Exec=swayidle -w timeout 900 '/home/security/screen-sleep.sh' resume '/home/security/screen-wake.sh'
+Exec=swayidle -w timeout 900 /home/security/screen-sleep.sh resume /home/security/screen-wake.sh
 X-GNOME-Autostart-enabled=true
 Hidden=false
 NoDisplay=false
