@@ -10,7 +10,7 @@ wlopm --on \*
 # Wait for display to initialize
 sleep 1
 
-# Restart Chromium with the configured flags using eval for proper expansion
-eval "chromium $CHROMIUM_FLAGS $UNIFI_PROTECT_URL &"
+# Restart Chromium with the configured flags
+chromium $CHROMIUM_FLAGS $UNIFI_PROTECT_URL &
 
 logger "Screen wake - Display on, Chromium restarted"
